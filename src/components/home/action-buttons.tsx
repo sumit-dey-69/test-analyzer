@@ -14,7 +14,7 @@ function ActionButtons() {
   };
 
   return (
-    <div className="w-full flex gap-5 justify-center md:ml-[5em]">
+    <div className="w-full flex gap-5 justify-center md:ml-[3em]">
       <Button onClick={reset}>Reset</Button>
       <Button onClick={handleDownload}>Download</Button>
       <Button onClick={() => router.push("/result")}>View Results</Button>

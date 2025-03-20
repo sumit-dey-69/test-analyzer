@@ -8,14 +8,14 @@ function Page() {
   const setTestCode = useSetTestCode();
 
   return (
-    <div className="max-w-[75rem] grid grid-rows-[auto_1fr_auto] gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 md:gap-10 md:px-8 mx-auto text-xs sm:text-sm md:text-base">
-      <div className="flex gap-4">
-        <h2>Test Code:</h2>
+    <div className="max-w-[75rem] grid grid-rows-[auto_1fr_auto] space-y-4 md:-space-y-[0.1em] gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 md:gap-10 md:px-8 mx-auto text-xs sm:text-sm md:text-base">
+      <div className="flex gap-[0.75em]">
+        <h2 className="text-[1.25em]">Test Code:</h2>
         <input
           type="text"
-          className="border-b focus-visible:outline-none border-gray-300 w-[5.5em]"
-          value={testCode}
+          className="border-b focus-visible:outline-none text-[1.1em] border-gray-300 w-full min-w-[3.25em] max-w-[5.75em]"
           onChange={(e) => setTestCode(e.target.value)}
+          value={testCode}
         />
       </div>
 

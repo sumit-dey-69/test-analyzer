@@ -11,11 +11,11 @@ function SubjectToggle({ index }: Props) {
   const subjectOptions: SubjectType[] = ["Maths", "Computer", "Reasoning"];
 
   return (
-    <div className="flex gap-2 h-max">
+    <div className="flex gap-2">
       {subjectOptions.map((subject) => (
         <button
           key={`${subject}-${index}`}
-          className={`border p-[0.75em] rounded-sm cursor-pointer hover:bg-white hover:text-black min-w-[5rem] text-center
+          className={`border p-[0.75em] rounded-sm cursor-pointer hover:bg-white hover:text-black min-w-[7rem] w-full text-center
             ${subjects[index] === subject ? "bg-white text-black" : ""}
           `}
           onClick={() => setSubjects(index, subjects[index] === subject ? null : subject)}
