@@ -6,7 +6,7 @@ type Props = {
   totalQuestions?: number;
 };
 
-function QuestionSelector({ totalQuestions = 5 }: Props) {
+function QuestionSelector({ totalQuestions = 75 }: Props) {
   const questions = Array.from(
     { length: totalQuestions },
     (_, i) => `Q${i + 1}.`
