@@ -10,7 +10,7 @@ const SubjectResults = () => {
   return (
     <div className="flex text-md gap-6 w-full">
       {Object.entries(subjectResults).map(([subject, data]) => (
-        <div key={subject} className="border space-y-[0.5em] hover:bg-white/2 p-2 w-full rounded-lg">
+        <div key={subject} className="border space-y-[0.5em] hover:bg-white/5 p-2 w-full rounded-lg">
           <h3 className="text-[0.85em] font-semibold">{subject}</h3>
           <p className="text-gray-400 text-[0.75em]">Total: {data.total}</p>
           <p className="text-green-400 text-[0.75em]">Correct: {data.correct}</p>

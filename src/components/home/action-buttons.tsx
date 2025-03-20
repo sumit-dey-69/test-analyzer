@@ -3,8 +3,9 @@ import { useReset } from "@/app/zustand/store";
 import Button from "@/components/button";
 import { downloadMarkdown } from "@/utils/download-markdown";
 import { useGenerateMarkdown } from "@/utils/use-markdown-results";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 function ActionButtons() {
+  const router = useRouter();
   const reset = useReset();
   const generateMarkdown = useGenerateMarkdown();
 

@@ -30,7 +30,7 @@ function DetailedSection() {
           return (
             <li
               key={questionIndex}
-              className="flex justify-between items-center text-black  hover:text-white bg-neutral-200 p-3 rounded-md hover:bg-black transition-all"
+              className="flex justify-between items-center text-black  hover:text-white bg-neutral-200 p-3 rounded-md hover:bg-black border-2 hover:border-neutral-200 transition-all"
             >
               <span className="text-[0.75em] font-semibold">Q{questionIndex + 1}:</span>
               <span className={`font-bold text-[0.85em] ${getColor(answer)}`}>
