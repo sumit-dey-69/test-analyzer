@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto_mono.variable} border min-h-screen overflow-x-hidden font-roboto-mono antialiased`}>
+      <body className={`${roboto_mono.variable} min-h-screen overflow-x-hidden font-roboto-mono antialiased`}>
         <Navbar />
         {children}
       </body>
