@@ -17,7 +17,7 @@ function QuestionSelector({ totalQuestions = 75 }: Props) {
       <h2 className="md:ml-[5em] text-lg font-bold text-center">
         Select Answers & Subjects
       </h2>
-      <div className="space-y-[0.95em] min-h-[40vh] max-h-[62.75vh] overflow-y-scroll no-scrollbar mx-auto">
+      <div className="space-y-[0.95em] min-h-[40vh] max-h-[62.75vh] overflow-y-scroll no-scrollbar scroll-smooth mx-auto">
         {questions.map((question, index) => (
           <div
             key={`${question}-${index}`}
