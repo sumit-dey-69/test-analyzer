@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, StorageValue } from "zustand/middleware";
 
 export type AnswerType = "Correct" | "Incorrect" | "Unattempt" | null;
 export type SubjectType = "Maths" | "Computer" | "Reasoning" | null;
@@ -17,6 +17,23 @@ type Store = {
   unattemptCount: () => number;
 };
 
+// ✅ Custom session storage handler
+const sessionStorageHandler =
+  typeof window !== "undefined"
+    ? {
+        getItem: (key: string): StorageValue<Store> | null => {
+          const storedValue = sessionStorage.getItem(key);
+          return storedValue ? JSON.parse(storedValue) : null;
+        },
+        setItem: (key: string, value: StorageValue<Store>) => {
+          sessionStorage.setItem(key, JSON.stringify(value));
+        },
+        removeItem: (key: string) => {
+          sessionStorage.removeItem(key);
+        },
+      }
+    : undefined;
+
 const useStore = create<Store>()(
   persist(
     (set, get) => ({
@@ -28,29 +45,17 @@ const useStore = create<Store>()(
 
       setAnswers: (index, answer) => {
         set((state) => ({
-          answers: {
-            ...state.answers,
-            [index]: answer,
-          },
+          answers: { ...state.answers, [index]: answer },
         }));
       },
 
       setSubjects: (index, subject) => {
         set((state) => ({
-          subjects: {
-            ...state.subjects,
-            [index]: subject,
-          },
+          subjects: { ...state.subjects, [index]: subject },
         }));
       },
 
-      reset: () => {
-        set({
-          testCode: "",
-          answers: {},
-          subjects: {},
-        });
-      },
+      reset: () => set({ testCode: "", answers: {}, subjects: {} }),
 
       correctCount: () =>
         Object.values(get().answers).filter((answer) => answer === "Correct")
@@ -65,11 +70,13 @@ const useStore = create<Store>()(
           .length,
     }),
     {
-      name: "test-store", // Key used in localStorage
+      name: "test-store",
+      storage: sessionStorageHandler, // ✅ Use sessionStorage instead of localStorage
     }
   )
 );
 
+// ✅ Export individual hooks for cleaner usage in components
 export const useTestCode = () => useStore((state) => state.testCode);
 export const useSetTestCode = () => useStore((state) => state.setTestCode);
 export const useAnswers = () => useStore((state) => state.answers);
@@ -78,7 +85,7 @@ export const useSubjects = () => useStore((state) => state.subjects);
 export const useSetSubjects = () => useStore((state) => state.setSubjects);
 export const useReset = () => useStore((state) => state.reset);
 export const useCorrectCount = () => useStore((state) => state.correctCount);
-export const useIncorrectCount = () =>
-  useStore((state) => state.incorrectCount);
-export const useUnattemptCount = () =>
-  useStore((state) => state.unattemptCount);
+export const useIncorrectCount = () => useStore((state) => state.incorrectCount);
+export const useUnattemptCount = () => useStore((state) => state.unattemptCount);
+
+export default useStore;
