@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,7 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto_mono.variable} font-roboto-mono antialiased`}>{children}</body>
+      <body className={`${roboto_mono.variable} border min-h-screen overflow-x-hidden font-roboto-mono antialiased`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
